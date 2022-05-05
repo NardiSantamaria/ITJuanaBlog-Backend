@@ -7,6 +7,7 @@ const getPost = async (req, res, next) => {
     try {
         const post = await postService.getPost(id);
         //console.log(post);
+        //TO DO. This actually sends an error and not found
         if(!post){
             return res.status(404).json({message: "Post not found"});
         }
