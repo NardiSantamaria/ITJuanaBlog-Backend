@@ -47,9 +47,21 @@ const deleteComment = async (id, postId )=>{
         console.log("does not exist");
         console.log(commentTodeleteIndex);
     }
-    
-    console.log("todos los comentarios: "+ postToUpdate.comments);
 }
+
+const updateComment = async (id, postId, comment)=>{
+    try{
+        const postToUpdate = await Post.findById(postId);
+        const commentToUpdateIndex = await postToUpdate.comments.findIndex(comment => comment._id == id);
+        postToUpdate.comments[commentToUpdateIndex] = comment; 
+        await postToUpdate.save();
+        console.log(postToUpdate);
+    }catch(error){
+        console.log(error)
+    }
+}
+
+
 
 
 
@@ -60,5 +72,6 @@ module.exports = {
     deletePost,
     updatePost,
     newComment,
-    deleteComment
+    deleteComment,
+    updateComment
 }

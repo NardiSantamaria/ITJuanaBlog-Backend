@@ -42,7 +42,6 @@ const createPost=async(req, res)=>{
     
 }
 
-
 const updatePost = async (req, res, next) => {
     const id = req.params.id;
     const postToUpdate = req.body;
@@ -80,7 +79,20 @@ const createComment=async (req, res) =>{
     }catch(error){
         console.log(error)
     }
+}
 
+const updateComment=async (req, res) =>{
+    const id = req.params.id;
+    const idPost = req.params.post;
+    const commentUpdated = req.body;
+    try{
+        await postService.updateComment(id, idPost, commentUpdated);
+        return res.status(200).json({
+            message: "Comment updated correctly"
+        });
+    }catch(error){
+        console.log(error)
+    }
 }
 
 const deleteComment = async (req, res, next) =>{
@@ -90,7 +102,7 @@ const deleteComment = async (req, res, next) =>{
     try {
         await postService.deleteComment(id, postId);
         return res.status(200).json({
-            message: "Post deleted correctly"
+            message: "Comment deleted correctly"
         });
     } catch (error) {
         console.log(error);
@@ -104,5 +116,6 @@ module.exports={
     updatePost,
     deletePost,
     createComment,
-    deleteComment
+    deleteComment,
+    updateComment
 }
