@@ -28,7 +28,7 @@ const connectDB=()=> {
         console.log(error);
     }
 }
-app.listen(8000, ()=> {
+app.listen(process.env.PORT, ()=> {
     connectDB();
     console.log('Server is running');
 });
