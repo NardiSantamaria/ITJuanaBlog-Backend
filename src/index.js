@@ -7,7 +7,6 @@ const app = express();
 const { append } = require("express/lib/response");
 
 app.use(express.json());
-app.use(postRoutes);
 app.use(cors());
 //middleware
 app.use((error, req, res , next)=>{
@@ -16,6 +15,7 @@ app.use((error, req, res , next)=>{
     //res.status(500).json({message: "problemas in middleware"})
 });
 
+app.use(postRoutes);
 const connectDB=()=> {
     try{
         mongoose.connect(process.env.DB_URI);
