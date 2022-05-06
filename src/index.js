@@ -4,14 +4,15 @@ const postRoutes = require('./routes/postsroutes')
 require('dotenv').config();
 const mongoose= require("mongoose");
 const app = express();
+const { append } = require("express/lib/response");
 
 app.use(express.json());
 app.use(postRoutes);
 app.use(cors());
 //middleware
 app.use((error, req, res , next)=>{
-    console.error(error.stack);
-    res.status(500).json({ message: error.message });
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    next();
     //res.status(500).json({message: "problemas in middleware"})
 });
 
