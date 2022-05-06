@@ -10,8 +10,8 @@ app.use(postRoutes);
 app.use(cors());
 //middleware
 app.use((error, req, res , next)=>{
-   // console.error(error.stack);
-    next();
+    console.error(error.stack);
+    res.status(500).json({ message: error.message });
     //res.status(500).json({message: "problemas in middleware"})
 });
 
