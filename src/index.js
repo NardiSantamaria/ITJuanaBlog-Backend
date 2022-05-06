@@ -11,10 +11,6 @@ app.use(cors());
 //middleware
 app.use((error, req, res , next)=>{
    // console.error(error.stack);
-    res.setHeader('Access-Control-Allow-Origin', '*');
-   // res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS', 'DELETE', 'Content-Type');
-    //res.header("Access-Control-Allow-Origin", "YOUR-DOMAIN.TLD"); // update to match the domain you will make the request from
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
     //res.status(500).json({message: "problemas in middleware"})
 });
